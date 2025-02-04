@@ -18,6 +18,7 @@ default_platform(:ios)
 platform :ios do
   desc "Push a new build to Firebase App Distribution"
   lane :development do |options|
+    setup_ci()
 
     ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "120"
     ENV["FASTLANE_XCODEBUILD_SETTINGS_RETRIES"] = "6"
@@ -30,7 +31,8 @@ platform :ios do
     increment_version_number(version_number: version)
     increment_build_number(build_number: build_number)
 
-    sh "flutter build ios --flavor development --target lib/main_development.dart"
+    if !is_ci
+      sh "flutter build ios --flavor development --target lib/main_development.dart"
   
     build_app(
       workspace: "Runner.xcworkspace",
@@ -48,7 +50,8 @@ platform :ios do
   end
 
   lane :staging do |options|
-    
+    setup_ci()
+
     ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "120"
     ENV["FASTLANE_XCODEBUILD_SETTINGS_RETRIES"] = "6"
 
@@ -60,6 +63,7 @@ platform :ios do
     increment_version_number(version_number: version)
     increment_build_number(build_number: build_number)
 
+    if !is_ci
     sh "flutter build ios --flavor staging --target lib/main_staging.dart"
   
     build_app(
@@ -79,6 +83,7 @@ platform :ios do
 
   lane :production do
     setup_ci()
+
     ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "120"
     ENV["FASTLANE_XCODEBUILD_SETTINGS_RETRIES"] = "6"
 
@@ -87,7 +92,8 @@ platform :ios do
     updated_version_number = bump_build_number()
     increment_build_number(build_number: updated_version_number)
 
-    sh "flutter build ios --flavor production --target lib/main_production.dart --no-codesign"
+    if !is_ci
+      sh "flutter build ios --flavor production --target lib/main_production.dart"
 
     build_app(
       workspace: "Runner.xcworkspace",
@@ -96,7 +102,7 @@ platform :ios do
       # xcargs: "-allowProvisioningUpdates"
     )
 
-    pilot(api_key_path: "fastlane/store.json", skip_waiting_for_build_processing: true)
+    # pilot(api_key_path: "fastlane/store.json", skip_waiting_for_build_processing: true)
   end
 
   def bump_build_number()
