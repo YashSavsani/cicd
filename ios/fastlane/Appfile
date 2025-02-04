@@ -1,0 +1,8 @@
+app_identifier("com.aubergine.cicd") # The bundle identifier of your app
+apple_id("yash.s@aubergine.co") # Your Apple Developer Portal username
+
+itc_team_id("118426560") # App Store Connect Team ID
+team_id("UR4Z8BUVRS") # Developer Portal Team ID
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile

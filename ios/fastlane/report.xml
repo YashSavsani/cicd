@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="fastlane.lanes">
+    
+    
+    
+      
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000266">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="1: match" time="7.493239">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="2: increment_version_number" time="1.663029">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="3: increment_build_number" time="1.144672">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="4: flutter build ios --flavor development --target lib/main_development.dart" time="62.681024">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="5: build_app" time="236.372416">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="6: firebase_app_distribution" time="11.579389">
+        
+      </testcase>
+    
+  </testsuite>
+</testsuites>
