@@ -11,10 +11,22 @@ on:
         description: "Build Number (e.g., 42)"
         required: true
         default: "1"
+      release_notes:
+        description: "Release Notes"
+        required: true
+        default: "Initial Release"
+      groups:
+        description: "TestFlight Tester Groups"
+        required: true
+        default: "Internal"
+      testers:
+        description: "TestFlight Testers"
+        required: false
+        default: ""
 
 jobs:
   deployIos:
-    runs-on: macos-15
+    runs-on: macos-lastest
     env:
       APP_STORE_CONNECT_API_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
     steps:
@@ -48,4 +60,4 @@ jobs:
           MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
         run: |
           cd ./ios
-          bundle exec fastlane ios staging version:${{github.event.inputs.version}} build_number:${{github.event.inputs.build_number}}
+          bundle exec fastlane ios staging version:${{github.event.inputs.version}} build_number:${{github.event.inputs.build_number}} release_notes:${{github.event.inputs.release_notes}} groups:${{github.event.inputs.groups}} testers:${{github.event.inputs.testers}}

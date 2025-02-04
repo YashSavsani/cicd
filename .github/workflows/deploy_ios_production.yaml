@@ -2,6 +2,15 @@ name: Deploy IOS to Production
 
 on:
   workflow_dispatch:
+    inputs:
+      release_notes:
+        description: "Release Notes"
+        required: true
+        default: "Initial Release"
+      groups:
+        description: "TestFlight Tester Groups"
+        required: true
+        default: "Internal"
 
 jobs:
   deployIos:
@@ -15,7 +24,7 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.24.5"
-          channel: 'stable'
+          channel: "stable"
           cache: true
         id: flutter
       - name: Accept Xcode License
@@ -36,4 +45,4 @@ jobs:
           MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
         run: |
           cd ./ios
-          bundle exec fastlane ios production
+          bundle exec fastlane ios production release_notes:"${{ github.event.inputs.release_notes }}" groups:"${{ github.event.inputs.groups }}"

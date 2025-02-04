@@ -27,14 +27,15 @@ platform :ios do
     
     version = options[:version] || "1.0.0" 
     build_number = options[:build_number] || 1
+    release_notes = options[:release_notes] || "Lots of amazing new features to test out!"
+    groups = options[:groups] || "Internal"
+    testers = options[:testers] || ""
   
     increment_version_number(version_number: version)
     increment_build_number(build_number: build_number)
 
-    if !is_ci
-      sh "flutter build ios --flavor development --target lib/main_development.dart"
-    end
-    
+    sh "flutter build ios --flavor development --target lib/main_development.dart --no-codesign"
+
     build_app(
       workspace: "Runner.xcworkspace",
       scheme: "development",
@@ -44,9 +45,9 @@ platform :ios do
   
     firebase_app_distribution(
       app: "1:1066466474532:ios:0ccf18ef14f0193b5936b1",
-      testers: "yash.s@aubergine.co",
-      groups: "internal",
-      release_notes: "Lots of amazing new features to test out!"
+      testers: testers,
+      groups: groups,
+      release_notes: release_notes,
     )
   end
 
@@ -60,13 +61,14 @@ platform :ios do
     
     version = options[:version] || "1.0.0" 
     build_number = options[:build_number] || 1
+    release_notes = options[:release_notes] || "Lots of amazing new features to test out!"
+    groups = options[:groups] || "Internal"
+    testers = options[:testers] || ""
   
     increment_version_number(version_number: version)
     increment_build_number(build_number: build_number)
 
-    if !is_ci
-    sh "flutter build ios --flavor staging --target lib/main_staging.dart"
-    end
+    sh "flutter build ios --flavor staging --target lib/main_staging.dart --no-codesign"
 
     build_app(
       workspace: "Runner.xcworkspace",
@@ -77,14 +79,17 @@ platform :ios do
   
     firebase_app_distribution(
       app: "1:1066466474532:ios:404f326999973a745936b1",
-      testers: "yash.s@aubergine.co",
-      groups: "internal",
-      release_notes: "Lots of amazing new features to test out!"
+      testers: testers,
+      groups: groups,
+      release_notes: release_notes
     )
   end
 
-  lane :production do
+  lane :production do |options|
     setup_ci()
+
+    release_notes = options[:release_notes] || "Lots of amazing new features to test out!"
+    groups = options[:groups] || "internal"
 
     ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "120"
     ENV["FASTLANE_XCODEBUILD_SETTINGS_RETRIES"] = "6"
@@ -94,10 +99,8 @@ platform :ios do
     updated_version_number = bump_build_number()
     increment_build_number(build_number: updated_version_number)
 
-    if !is_ci
-      sh "flutter build ios --flavor production --target lib/main_production.dart"
-    end
-
+    sh "flutter build ios --flavor production --target lib/main_production.dart --no-codesign"
+    
     build_app(
       workspace: "Runner.xcworkspace",
       scheme: "production",
@@ -105,7 +108,13 @@ platform :ios do
       # xcargs: "-allowProvisioningUpdates"
     )
 
-    # pilot(api_key_path: "fastlane/store.json", skip_waiting_for_build_processing: true)
+    pilot(
+      api_key_path: "fastlane/store.json", 
+      skip_waiting_for_build_processing: true, 
+      changelog: release_notes,
+      distribute_external: true,
+      groups: groups,
+    )
   end
 
   def bump_build_number()
