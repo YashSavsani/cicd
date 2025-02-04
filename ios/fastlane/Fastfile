@@ -86,7 +86,7 @@ platform :ios do
     updated_version_number = bump_build_number()
     increment_build_number(build_number: updated_version_number)
 
-    # sh "flutter build ios --flavor production --target lib/main_production.dart"
+    sh "flutter build ios --flavor production --target lib/main_production.dart --no-codesign"
 
     build_app(
       workspace: "Runner.xcworkspace",
