@@ -1,0 +1,42 @@
+name: Deploy IOS to Staging
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deployIos:
+    runs-on: macos-15
+    env:
+      APP_STORE_CONNECT_API_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
+    steps:
+      - name: ⬇️ Checkout repository
+        uses: actions/checkout@v3
+        
+      - name: ⚙️ Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.24.5"
+          channel: "stable"
+          cache: true
+        id: flutter
+
+      - name: 📦 Get Packages
+        run: flutter pub get
+
+      - name: Setup Fastlane
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+          working-directory: ios
+
+      - name: Setup app store connect
+        run: echo "$APP_STORE_CONNECT_API_KEY" >> ./ios/fastlane/store.json
+
+      - name: Build and Deploy to TestFlight
+        env:
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+        run: |
+          cd ./ios
+          bundle exec fastlane ios staging version:"1.0.0" build_number:1

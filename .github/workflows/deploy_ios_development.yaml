@@ -1,4 +1,4 @@
-name: Deploy cicd to App Store
+name: Deploy IOS to Development
 
 on:
   workflow_dispatch:
@@ -39,4 +39,4 @@ jobs:
           MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
         run: |
           cd ./ios
-          bundle exec fastlane ios production
+          bundle exec fastlane ios development version:"1.0.0" build_number:1
