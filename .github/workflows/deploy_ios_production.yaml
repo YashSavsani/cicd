@@ -28,8 +28,6 @@ jobs:
           working-directory: ios
       - name: Setup app store connect
         run: echo "$APP_STORE_CONNECT_API_KEY" >> ./ios/fastlane/store.json
-      - name: Install pod
-        run: cd ios && pod install
       - name: Build and Deploy to TestFlight
         env:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
