@@ -49,8 +49,10 @@ jobs:
           ruby-version: "3.3"
           bundler-cache: true
           working-directory: ios
-      - name: Setup app store connect
-        run: echo "$APP_STORE_CONNECT_API_KEY" >> ./ios/fastlane/store.json
+      - name: Set up Firebase authentication
+        run: echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > $HOME/service-account.json
+      - name: Authenticate Firebase CLI
+        run: export GOOGLE_APPLICATION_CREDENTIALS="$HOME/service-account.json"
       - name: Build and Deploy to Firebase App Distribution
         env:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
