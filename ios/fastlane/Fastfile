@@ -115,6 +115,7 @@ platform :ios do
       distribute_external: true,
       changelog: release_notes,
       groups: groups,
+      beta_app_description: "This is a beta version of our app. Please test and provide feedback."
     )
   end
 
