@@ -26,7 +26,7 @@ on:
 
 jobs:
   deployIOSDevelopment:
-    runs-on: macos-lastest
+    runs-on: macos-latest
     env:
       APP_STORE_CONNECT_API_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
     steps:
