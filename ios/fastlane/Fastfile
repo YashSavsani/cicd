@@ -112,6 +112,7 @@ platform :ios do
       api_key_path: "fastlane/store.json", 
       skip_waiting_for_build_processing: true, 
       distribute_external: true,
+      changelog: release_notes,
       groups: groups,
     )
 
