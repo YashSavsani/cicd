@@ -29,6 +29,7 @@ jobs:
     runs-on: macos-latest
     env:
       APP_STORE_CONNECT_API_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
+      FIREBASE_SERVICE_ACCOUNT : ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -50,9 +51,7 @@ jobs:
           bundler-cache: true
           working-directory: ios
       - name: Set up Firebase authentication
-        run: echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > $HOME/service-account.json
-      - name: Authenticate Firebase CLI
-        run: export GOOGLE_APPLICATION_CREDENTIALS="$HOME/service-account.json"
+        run: echo "$FIREBASE_SERVICE_ACCOUNT" >> ./ios/fastlane/service-account.json
       - name: Build and Deploy to Firebase App Distribution
         env:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}

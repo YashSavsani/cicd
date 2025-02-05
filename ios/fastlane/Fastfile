@@ -45,7 +45,7 @@ platform :ios do
   
     firebase_app_distribution(
       app: "1:1066466474532:ios:0ccf18ef14f0193b5936b1",
-      service_credentials_file: ENV["GOOGLE_APPLICATION_CREDENTIALS"],
+      service_credentials_file: "fastlane/service-account.json",
       testers: testers,
       groups: groups,
       release_notes: release_notes,
@@ -80,7 +80,7 @@ platform :ios do
   
     firebase_app_distribution(
       app: "1:1066466474532:ios:404f326999973a745936b1",
-      service_credentials_file: ENV["GOOGLE_APPLICATION_CREDENTIALS"],
+      service_credentials_file: "fastlane/service-account.json",
       testers: testers,
       groups: groups,
       release_notes: release_notes
