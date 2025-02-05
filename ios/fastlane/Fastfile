@@ -115,7 +115,7 @@ platform :ios do
       skip_waiting_for_build_processing: true, 
       distribute_external: true,
       changelog: {
-        "en-US" : release_notes,
+        "en-US" => release_notes,
       },
       groups: groups,
     )
