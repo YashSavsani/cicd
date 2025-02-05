@@ -115,6 +115,11 @@ platform :ios do
       skip_waiting_for_build_processing: true, 
       changelog: release_notes,
       groups: groups,
+      localized_build_info: {
+          "default": {
+            whats_new: release_notes, 
+          }
+      }
     )
   end
 
