@@ -114,11 +114,10 @@ platform :ios do
       api_key_path: "fastlane/store.json", 
       skip_waiting_for_build_processing: true, 
       distribute_external: true,
-      changelog: {
-        "en-US" => release_notes,
-      },
+      changelog: release_notes,
       groups: groups,
     )
+    set_changelog(changelog: {"en-US" => release_notes})
   end
 
   def bump_build_number()
