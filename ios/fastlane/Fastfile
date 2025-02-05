@@ -112,10 +112,9 @@ platform :ios do
 
     pilot(
       api_key_path: "fastlane/store.json", 
-      distribute_external: true,
+      skip_waiting_for_build_processing: true, 
       changelog: release_notes,
       groups: groups,
-      beta_app_description: "This is a beta version of our app. Please test and provide feedback."
     )
   end
 
