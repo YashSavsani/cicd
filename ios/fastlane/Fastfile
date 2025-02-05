@@ -89,7 +89,7 @@ platform :ios do
     setup_ci()
 
     release_notes = options[:release_notes] || "Lots of amazing new features to test out!"
-    groups = options[:groups] || "internal"
+    groups = options[:groups] || "Internal"
 
     ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "120"
     ENV["FASTLANE_XCODEBUILD_SETTINGS_RETRIES"] = "6"
@@ -111,10 +111,11 @@ platform :ios do
     pilot(
       api_key_path: "fastlane/store.json", 
       skip_waiting_for_build_processing: true, 
-      changelog: release_notes,
       distribute_external: true,
       groups: groups,
     )
+
+    set_changelog(changelog: release_notes)
   end
 
   def bump_build_number()
