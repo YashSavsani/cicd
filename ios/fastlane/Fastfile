@@ -112,14 +112,9 @@ platform :ios do
 
     pilot(
       api_key_path: "fastlane/store.json", 
-      skip_waiting_for_build_processing: true, 
+      skip_waiting_for_build_processing: false, 
       changelog: release_notes,
       groups: groups,
-      localized_build_info: {
-          "default": {
-            whats_new: release_notes, 
-          }
-      }
     )
   end
 
