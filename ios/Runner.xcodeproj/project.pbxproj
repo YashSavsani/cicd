@@ -376,6 +376,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = UR4Z8BUVRS;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = Cicd;
+				FLUTTER_TARGET = lib/main_production.dart;
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -476,6 +477,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = UR4Z8BUVRS;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = Cicd;
+				FLUTTER_TARGET = lib/main_production.dart;
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -571,6 +573,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = UR4Z8BUVRS;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = Cicd;
+				FLUTTER_TARGET = lib/main_production.dart;
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -669,6 +672,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = UR4Z8BUVRS;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "[DEV] Cicd";
+				FLUTTER_TARGET = lib/main_development.dart;
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -764,6 +768,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = UR4Z8BUVRS;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "[DEV] Cicd";
+				FLUTTER_TARGET = lib/main_development.dart;
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -858,6 +863,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = UR4Z8BUVRS;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "[DEV] Cicd";
+				FLUTTER_TARGET = lib/main_development.dart;
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -957,6 +963,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = UR4Z8BUVRS;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "[STG] Cicd";
+				FLUTTER_TARGET = lib/main_staging.dart;
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1057,6 +1064,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = UR4Z8BUVRS;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "[STG] Cicd";
+				FLUTTER_TARGET = lib/main_staging.dart;
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1152,6 +1160,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = UR4Z8BUVRS;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "[STG] Cicd";
+				FLUTTER_TARGET = lib/main_staging.dart;
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
