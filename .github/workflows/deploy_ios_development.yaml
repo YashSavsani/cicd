@@ -17,8 +17,7 @@ on:
         default: "Initial Release"
       groups:
         description: "TestFlight Tester Groups"
-        required: true
-        default: "Internal"
+        required: false
       testers:
         description: "TestFlight Testers"
         required: false

@@ -91,7 +91,7 @@ platform :ios do
     setup_ci()
 
     release_notes = options[:release_notes] || "Lots of amazing new features to test out!"
-    groups = options[:groups] || "Internal"
+    groups = options[:groups]
 
     ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "120"
     ENV["FASTLANE_XCODEBUILD_SETTINGS_RETRIES"] = "6"
