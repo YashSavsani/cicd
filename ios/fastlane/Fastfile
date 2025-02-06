@@ -34,7 +34,7 @@ platform :ios do
     increment_version_number(version_number: version)
     increment_build_number(build_number: build_number)
 
-    sh "flutter build ios --flavor development --target lib/main_development.dart --no-codesign"
+    # sh "flutter build ios --flavor development --target lib/main_development.dart --no-codesign"
 
     build_app(
       workspace: "Runner.xcworkspace",
@@ -69,7 +69,7 @@ platform :ios do
     increment_version_number(version_number: version)
     increment_build_number(build_number: build_number)
 
-    sh "flutter build ios --flavor staging --target lib/main_staging.dart --no-codesign"
+    # sh "flutter build ios --flavor staging --target lib/main_staging.dart --no-codesign"
 
     build_app(
       workspace: "Runner.xcworkspace",
@@ -112,7 +112,7 @@ platform :ios do
 
     pilot(
       api_key_path: "fastlane/store.json", 
-      skip_waiting_for_build_processing: false, 
+      skip_waiting_for_build_processing: true, 
       changelog: release_notes,
       groups: groups,
     )
