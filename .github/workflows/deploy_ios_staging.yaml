@@ -16,11 +16,11 @@ on:
         required: true
         default: "Initial Release"
       groups:
-        description: "TestFlight Tester Groups"
+        description: "Firebase Tester Groups"
         required: true
         default: "Internal"
       testers:
-        description: "TestFlight Testers"
+        description: "Firebase Testers"
         required: false
         default: ""
 

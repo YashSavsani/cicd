@@ -9,8 +9,7 @@ on:
         default: "Initial Release"
       groups:
         description: "TestFlight Tester Groups"
-        required: true
-        default: "Internal"
+        required: false
 
 jobs:
   deployIOSProduction:
