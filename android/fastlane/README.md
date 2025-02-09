@@ -13,28 +13,28 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 # Available Actions
 
-## iOS
+## Android
 
-### ios development
+### android development
 
 ```sh
-[bundle exec] fastlane ios development
+[bundle exec] fastlane android development
 ```
 
 Push a new build
 
-### ios staging
+### android staging
 
 ```sh
-[bundle exec] fastlane ios staging
+[bundle exec] fastlane android staging
 ```
 
 
 
-### ios production
+### android production
 
 ```sh
-[bundle exec] fastlane ios production
+[bundle exec] fastlane android production
 ```
 
 

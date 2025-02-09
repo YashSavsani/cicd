@@ -1,0 +1,81 @@
+name: Deploy Android App to Development
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "App Version (e.g., 1.0.0)"
+        required: true
+        default: "1.0.0"
+      build_number:
+        description: "Build Number (e.g., 42)"
+        required: true
+        default: "1"
+      release_notes:
+        description: "Release Notes"
+        required: true
+        default: "Development Build"
+      groups:
+        description: "Firebase Tester Groups"
+        required: true
+        default: "Internal"
+      testers:
+        description: "Firebase Testers"
+        required: false
+        default: ""
+
+jobs:
+  deployAndroidDevelopment:
+    runs-on: ubuntu-latest
+    env:
+      FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      ANDROID_SIGNING_KEY: ${{ secrets.DEBUG_SIGNING_KEY }}
+      ANDROID_KEY_ALIAS: ${{ secrets.DEBUG_KEY_ALIAS }}
+      ANDROID_STORE_PASSWORD: ${{ secrets.DEBUG_KEYSTORE_PASSWORD }}
+      ANDROID_KEY_PASSWORD: ${{ secrets.DEBUG_KEY_PASSWORD }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: "zulu"
+          java-version: "17"
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.24.5"
+          channel: "stable"
+          cache: true
+        id: flutter
+
+      - name: Get Flutter Dependencies
+        run: flutter pub get
+
+      - name: Setup Ruby and Fastlane
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+          working-directory: android
+
+      - name: Decode Android Debug Keystore
+        run: |
+          echo "${{ secrets.DEBUG_SIGNING_KEY }}" > android/app/debug.keystore.base64
+          base64 -d android/app/debug.keystore.base64 > android/app/debug.keystore
+
+      - name: Set up Firebase authentication
+        run: echo "$FIREBASE_SERVICE_ACCOUNT" > ./android/fastlane/service-account.json
+
+      - name: Build and Deploy to Firebase App Distribution
+        run: |
+          cd ./android
+          bundle exec fastlane android development \
+            version:${{ github.event.inputs.version }} \
+            build_number:${{ github.event.inputs.build_number }} \
+            release_notes:"${{ github.event.inputs.release_notes }}" \
+            groups:${{ github.event.inputs.groups }} \
+            testers:${{ github.event.inputs.testers }}

@@ -1,0 +1,77 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+platform :android do
+  desc "Push a new build"
+  lane :development do |options|
+
+    version = options[:version] || "1.0.0" 
+    build_number = options[:build_number] || 1
+    release_notes = options[:release_notes] || "Lots of amazing new features to test out!"
+    groups = options[:groups] || "Internal"
+    testers = options[:testers] || ""
+
+    sh "flutter clean"
+    sh "flutter build apk --build-name=#{version} --build-number=#{build_number} --flavor development --target=lib/main_development.dart"
+
+    firebase_app_distribution(
+      app: "1:1066466474532:android:78e1497ab26e57625936b1",
+      service_credentials_file: "fastlane/service-account.json",
+      apk_path: "../build/app/outputs/flutter-apk/app-development-release.apk",
+      testers: testers,
+      groups: groups,
+      release_notes: release_notes,
+    )
+  end
+
+  lane :staging do |options|
+
+    version = options[:version] || "1.0.0" 
+    build_number = options[:build_number] || 1
+    release_notes = options[:release_notes] || "Lots of amazing new features to test out!"
+    groups = options[:groups] || "Internal"
+    testers = options[:testers] || ""
+
+    sh "flutter clean"
+    sh "flutter build apk --build-name=#{version} --build-number=#{build_number} --flavor staging --target lib/main_staging.dart"
+
+    firebase_app_distribution(
+      app: "1:1066466474532:android:29a34a40d1dfb3465936b1",
+      service_credentials_file: "fastlane/service-account.json",
+      apk_path: "../build/app/outputs/flutter-apk/app-staging-release.apk",
+      testers: testers,
+      groups: groups,
+      release_notes: release_notes,
+    )
+  end
+
+  lane :production do |options|
+
+    version = options[:version] || "1.0.0" 
+    build_number = options[:build_number] || 1
+    # release_notes = options[:release_notes] || "Lots of amazing new features to test out!"
+
+
+    sh "flutter clean"
+    sh "flutter build appbundle --build-name=#{version} --build-number=#{build_number} --flavor production --target lib/main_production.dart"
+    
+    upload_to_play_store(
+      track: "beta", #internal (for internal testing),alpha (for closed testing),beta (for open testing),production (for public release)
+      aab: "../build/app/outputs/bundle/productionRelease/app-production-release.aab",
+    )
+  end
+end

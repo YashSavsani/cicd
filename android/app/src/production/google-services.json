@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "1066466474532",
+    "project_id": "cicd-3284b",
+    "storage_bucket": "cicd-3284b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1066466474532:android:a9a24b1350a329675936b1",
+        "android_client_info": {
+          "package_name": "com.aubergine.cicd"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSiUhlhLms8Rq0lDPAYMKoZLGe0LQUHh4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1066466474532:android:78e1497ab26e57625936b1",
+        "android_client_info": {
+          "package_name": "com.aubergine.cicd.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSiUhlhLms8Rq0lDPAYMKoZLGe0LQUHh4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1066466474532:android:29a34a40d1dfb3465936b1",
+        "android_client_info": {
+          "package_name": "com.aubergine.cicd.stg"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSiUhlhLms8Rq0lDPAYMKoZLGe0LQUHh4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -9,3 +9,7 @@ GeneratedPluginRegistrant.java
 key.properties
 **/*.keystore
 **/*.jks
+**/*.keystore.base64
+
+fastlane/supply.json
+fastlane/service-account.json
