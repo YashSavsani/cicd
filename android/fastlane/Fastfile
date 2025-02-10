@@ -65,10 +65,7 @@ platform :android do
     build_number = options[:build_number] || 1
     # release_notes = options[:release_notes] || "Lots of amazing new features to test out!"
 
-    sh "cd .."
-    sh "flutter clean"
-    sh "flutter build appbundle --build-name=#{version} --build-number=#{build_number} --flavor production --target lib/main_production.dart"
-    sh "cd android"
+    sh "cd .. && flutter clean && flutter build appbundle --build-name=#{version} --build-number=#{build_number} --flavor production --target lib/main_production.dart && cd android"
 
     #internal (for internal testing),alpha (for closed testing),beta (for open testing),production (for public release)
     upload_to_play_store(
