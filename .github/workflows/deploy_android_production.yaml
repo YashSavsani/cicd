@@ -56,7 +56,9 @@ jobs:
           base64 -d ./android/app/release.keystore.base64 > ./android/app/release.keystore
       
       - name: Set up Supply Key file
-        run: echo "$SUPPLY_KEY" > ./android/fastlane/supply.json
+        run: |
+          echo "$SUPPLY_KEY" > ./android/fastlane/supply.json.base64
+          base64 -d ./android/fastlane/supply.json.base64 > ./android/fastlane/supply.json
       
       - name: Setup store key properties
         run: echo "$RELEASE_KEYSTORE_PROPERTIES" > ./android/key.properties

@@ -10,6 +10,7 @@ key.properties
 **/*.keystore
 **/*.jks
 **/*.keystore.base64
+**/*.json.base64
 
 fastlane/supply.json
 fastlane/service-account.json
