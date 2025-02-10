@@ -29,10 +29,10 @@ jobs:
     runs-on: ubuntu-latest
     env:
       FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-      ANDROID_SIGNING_KEY: ${{ secrets.DEBUG_SIGNING_KEY }}
-      ANDROID_KEY_ALIAS: ${{ secrets.DEBUG_KEY_ALIAS }}
-      ANDROID_STORE_PASSWORD: ${{ secrets.DEBUG_KEYSTORE_PASSWORD }}
-      ANDROID_KEY_PASSWORD: ${{ secrets.DEBUG_KEY_PASSWORD }}
+      # ANDROID_SIGNING_KEY: ${{ secrets.DEBUG_SIGNING_KEY }}
+      # ANDROID_KEY_ALIAS: ${{ secrets.DEBUG_KEY_ALIAS }}
+      # ANDROID_STORE_PASSWORD: ${{ secrets.DEBUG_KEYSTORE_PASSWORD }}
+      # ANDROID_KEY_PASSWORD: ${{ secrets.DEBUG_KEY_PASSWORD }}
 
     steps:
       - name: Checkout repository
@@ -62,13 +62,13 @@ jobs:
           bundler-cache: true
           working-directory: android
 
-      - name: Decode Android Keystore
-        run: |
-          echo "${{ secrets.DEBUG_SIGNING_KEY }}" > android/app/debug.keystore.base64
-          base64 -d android/app/debug.keystore.base64 > android/app/debug.keystore
+      # - name: Decode Android Keystore
+      #   run: |
+      #     echo "${{ secrets.DEBUG_SIGNING_KEY }}" > android/app/debug.keystore.base64
+      #     base64 -d android/app/debug.keystore.base64 > android/app/debug.keystore
 
       - name: Set up Firebase authentication
-        run: echo "$FIREBASE_SERVICE_ACCOUNT" > ./android/fastlane/service-account.json
+        run: echo "$FIREBASE_SERVICE_ACCOUNT" > android/fastlane/service-account.json
 
       - name: Build and Deploy to Firebase App Distribution
         run: |

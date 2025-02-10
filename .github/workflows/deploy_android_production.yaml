@@ -59,9 +59,6 @@ jobs:
           echo "${{ secrets.RELEASE_SIGNING_KEY }}" > android/app/release.keystore.base64
           base64 -d android/app/release.keystore.base64 > android/app/release.keystore
 
-      - name: Set up Firebase authentication
-        run: echo "$FIREBASE_SERVICE_ACCOUNT" > ./android/fastlane/service-account.json
-
       - name: Build and Deploy to Play Store
         run: |
           cd ./android

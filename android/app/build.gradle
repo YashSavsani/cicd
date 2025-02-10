@@ -59,13 +59,6 @@ android {
     }
 
     signingConfigs {
-        debug {
-            storeFile file("debug.keystore")
-            keyAlias "androiddebugkey"
-            keyPassword "android"
-            storePassword "android"
-        }
-
         release{
             keyAlias keystoreProperties['keyAlias']
             keyPassword keystoreProperties['keyPassword']
@@ -80,16 +73,19 @@ android {
             dimension "default"
             applicationIdSuffix ""
             manifestPlaceholders = [appName: "Cicd"]
+            signingConfig signingConfigs.release  // Always use release signing for production
         }
         staging {
             dimension "default"
             applicationIdSuffix ".stg"
             manifestPlaceholders = [appName: "[STG] Cicd"]
+            signingConfig signingConfigs.debug
         }
         development {
             dimension "default"
             applicationIdSuffix ".dev"
             manifestPlaceholders = [appName: "[DEV] Cicd"]
+            signingConfig signingConfigs.debug
         }
     }
 
@@ -98,11 +94,12 @@ android {
             signingConfig signingConfigs.debug
         }
         release {
-            // Use debug keystore for non-production flavors
-            signingConfig (getGradle().startParameter.taskRequests.toString().contains("production") 
-                ? signingConfigs.release 
-                : signingConfigs.debug)
-
+            // Properly handle production signing
+            if (project.hasProperty('release') && project.property('release').toString().equals('true')) {
+                signingConfig signingConfigs.release
+            } else {
+                signingConfig signingConfigs.debug
+            }
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt')
         }
