@@ -71,7 +71,7 @@ platform :android do
     
     upload_to_play_store(
       track: "beta", #internal (for internal testing),alpha (for closed testing),beta (for open testing),production (for public release)
-      aab: "build/app/outputs/bundle/productionRelease/app-production-release.aab",
+      aab: "../build/app/outputs/bundle/productionRelease/app-production-release.aab",
     )
   end
 end
