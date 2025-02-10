@@ -43,9 +43,6 @@ jobs:
           cache: true
         id: flutter
 
-      - name: Get Flutter Dependencies
-        run: flutter pub get
-
       - name: Setup Ruby and Fastlane
         uses: ruby/setup-ruby@v1
         with:
@@ -62,7 +59,7 @@ jobs:
         run: echo "$SUPPLY_KEY" > android/fastlane/supply.json
       
       - name: Setup store key properties
-        run: echo "$RELEASE_KEYSTORE_PROPERTIES" >> ./android/key.properties
+        run: echo "$RELEASE_KEYSTORE_PROPERTIES" > android/key.properties
 
       - name: Build and Deploy to Play Store
         run: |
