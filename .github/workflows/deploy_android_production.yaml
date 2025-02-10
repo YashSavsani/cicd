@@ -22,9 +22,7 @@ jobs:
     env:
       FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
       RELEASE_SIGNING_KEY: ${{ secrets.RELEASE_SIGNING_KEY }}
-      RELEASE_KEY_ALIAS: ${{ secrets.RELEASE_KEY_ALIAS }}
-      RELEASE_KEYSTORE_PASSWORD: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
-      RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
+      RELEASE_KEYSTORE_PROPERTIES: ${{ secrets.RELEASE_KEYSTORE_PROPERTIES }}
       SUPPLY_KEY: ${{ secrets.SUPPLY_KEY }}
 
     steps:
@@ -62,6 +60,9 @@ jobs:
       
       - name: Set up Supply Key file
         run: echo "$SUPPLY_KEY" > android/fastlane/supply.json
+      
+      - name: Setup store key properties
+        run: echo "$RELEASE_KEYSTORE_PROPERTIES" >> ./android/key.properties
 
       - name: Build and Deploy to Play Store
         run: |
