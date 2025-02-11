@@ -61,14 +61,9 @@ jobs:
       - name: Setup store key properties
         run: echo "$RELEASE_KEYSTORE_PROPERTIES" > android/key.properties
 
-      - name: Install check fastlane version
-        run: |
-          gem install bundler
-          bundle install
-          bundle exec fastlane --version
-          bundle exec supply --version
-          
       - name: Build and Deploy to Play Store
         run: |
           cd ./android
+          bundle exec fastlane --version
+          bundle exec fastlane supply --version
           bundle exec fastlane android production version:${{ github.event.inputs.version }} build_number:${{ github.event.inputs.build_number }}
