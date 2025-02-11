@@ -48,21 +48,19 @@ jobs:
         with:
           ruby-version: "3.3"
           bundler-cache: true
+          working-directory: android
 
       - name: Decode Android Keystore 
         run: |
-          echo "$RELEASE_SIGNING_KEY" > android/app/release.keystore.base64
-          base64 -d android/app/release.keystore.base64 > android/app/release.keystore
+          echo "$RELEASE_SIGNING_KEY" > ./android/app/release.keystore.base64
+          base64 -d ./android/app/release.keystore.base64 > ./android/app/release.keystore
       
       - name: Set up Supply Key file
         run: |
-          echo "$SUPPLY_KEY" > android/fastlane/supply.json
+          echo "$SUPPLY_KEY" > ./android/fastlane/supply.json
 
-      - name: Set up Firebase authentication
-        run: echo "$FIREBASE_SERVICE_ACCOUNT" > android/fastlane/service-account.json
-      
       - name: Setup store key properties
-        run: echo "$RELEASE_KEYSTORE_PROPERTIES" > android/key.properties
+        run: echo "$RELEASE_KEYSTORE_PROPERTIES" > ./android/key.properties
 
       - name: Build and Deploy to Play Store
         run: |
