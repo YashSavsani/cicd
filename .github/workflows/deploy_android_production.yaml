@@ -18,7 +18,7 @@ on:
 
 jobs:
   deployAndroidProduction:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     env:
       FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
       RELEASE_SIGNING_KEY: ${{ secrets.RELEASE_SIGNING_KEY }}
@@ -46,7 +46,7 @@ jobs:
       - name: Setup Ruby and Fastlane
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "2.6.10"
+          ruby-version: "2.6.10p210"
           bundler-cache: true
 
       - name: Decode Android Keystore 
