@@ -61,6 +61,11 @@ jobs:
       - name: Setup store key properties
         run: echo "$RELEASE_KEYSTORE_PROPERTIES" > android/key.properties
 
+      - name: Install check fastlane version
+        run: |
+          bundle exec fastlane --version
+          bundle exec supply --version
+
       - name: Build and Deploy to Play Store
         run: |
           cd ./android
