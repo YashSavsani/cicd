@@ -53,8 +53,8 @@ jobs:
       - name: Decode Android Keystore 
         working-directory: android
         run: |
-          echo "$RELEASE_SIGNING_KEY" > app/release.keystore.base64
-          base64 -d app/release.keystore.base64 > app/release.keystore
+          echo "$RELEASE_SIGNING_KEY" > app/release-signing-key.txt
+          base64 -d -i app/release-signing-key.txt -o app/release.keystore
       
       - name: Set up Supply Key file
         working-directory: android
