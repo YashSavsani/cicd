@@ -46,7 +46,7 @@ jobs:
       - name: Setup Ruby and Fastlane
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.3"
+          ruby-version: "3.3.6"
           bundler-cache: true
           working-directory: android
 
@@ -56,13 +56,12 @@ jobs:
           base64 -d ./android/app/release.keystore.base64 > ./android/app/release.keystore
       
       - name: Set up Supply Key file
-        run: |
-          echo "$SUPPLY_KEY" > ./android/fastlane/supply.json
+        run: echo "$SUPPLY_KEY" > ./android/fastlane/supply.json
 
       - name: Setup store key properties
         run: echo "$RELEASE_KEYSTORE_PROPERTIES" > ./android/key.properties
 
       - name: Build and Deploy to Play Store
+        working-directory: android
         run: |
-          cd ./android
           bundle exec fastlane android production version:${{ github.event.inputs.version }} build_number:${{ github.event.inputs.build_number }}
