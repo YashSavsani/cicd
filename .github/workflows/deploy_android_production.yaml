@@ -58,7 +58,7 @@ jobs:
       
       - name: Set up Supply Key file
         working-directory: android
-        run: echo "$SUPPLY_KEY" > android/fastlane/supply.json
+        run: echo "$SUPPLY_KEY" > fastlane/supply.json
 
       - name: Setup store key properties
         working-directory: android
