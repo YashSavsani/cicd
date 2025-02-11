@@ -18,7 +18,7 @@ on:
 
 jobs:
   deployAndroidProduction:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     env:
       FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
       RELEASE_SIGNING_KEY: ${{ secrets.RELEASE_SIGNING_KEY }}
