@@ -72,7 +72,7 @@ platform :android do
     upload_to_play_store(
       track: "beta", 
       aab: "../build/app/outputs/bundle/productionRelease/app-production-release.aab",
-      json_key: "fastlane/supply.json"
+      json_key: "android/fastlane/supply.json"
     )
   end
 end
