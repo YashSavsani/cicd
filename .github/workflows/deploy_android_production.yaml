@@ -64,6 +64,4 @@ jobs:
       - name: Build and Deploy to Play Store
         run: |
           cd ./android
-          bundle exec fastlane --version
-          bundle exec fastlane supply --version
           bundle exec fastlane android production version:${{ github.event.inputs.version }} build_number:${{ github.event.inputs.build_number }}
