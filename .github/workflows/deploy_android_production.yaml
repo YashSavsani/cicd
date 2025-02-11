@@ -60,9 +60,17 @@ jobs:
         working-directory: android
         run: echo "$SUPPLY_KEY" > fastlane/supply.json
 
+      - name: Print Supply Key file content
+        working-directory: android
+        run: cat fastlane/supply.json
+
       - name: Setup store key properties
         working-directory: android
         run: echo "$RELEASE_KEYSTORE_PROPERTIES" > key.properties
+      
+      - name: Print store key properties
+        working-directory: android
+        run: cat key.properties
 
       - name: Build and Deploy to Play Store
         working-directory: android
