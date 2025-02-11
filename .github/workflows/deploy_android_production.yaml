@@ -63,9 +63,11 @@ jobs:
 
       - name: Install check fastlane version
         run: |
+          gem install bundler
+          bundle install
           bundle exec fastlane --version
           bundle exec supply --version
-
+          
       - name: Build and Deploy to Play Store
         run: |
           cd ./android
