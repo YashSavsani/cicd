@@ -54,7 +54,7 @@ jobs:
         working-directory: android
         run: |
           echo "$RELEASE_SIGNING_KEY" > app/release-signing-key.txt
-          base64 -d -i app/release-signing-key.txt -o app/release.keystore
+          base64 -d app/release-signing-key.txt > app/release.keystore
       
       - name: Set up Supply Key file
         working-directory: android
