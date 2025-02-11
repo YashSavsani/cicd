@@ -12,5 +12,5 @@ key.properties
 **/*.keystore.base64
 **/*.json.base64
 
-fastlane/supply.json
+**/supply.json
 fastlane/service-account.json
