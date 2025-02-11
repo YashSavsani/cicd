@@ -53,16 +53,16 @@ jobs:
       - name: Decode Android Keystore 
         working-directory: android
         run: |
-          echo "$RELEASE_SIGNING_KEY" >> app/release.keystore.base64
-          base64 -d app/release.keystore.base64 >> app/release.keystore
+          echo "$RELEASE_SIGNING_KEY" > app/release.keystore.base64
+          base64 -d app/release.keystore.base64 > app/release.keystore
       
       - name: Set up Supply Key file
         working-directory: android
-        run: echo "$SUPPLY_KEY" >> supply.json
+        run: echo "$SUPPLY_KEY" > android/fastlane/supply.json
 
       - name: Setup store key properties
         working-directory: android
-        run: echo "$RELEASE_KEYSTORE_PROPERTIES" >> key.properties
+        run: echo "$RELEASE_KEYSTORE_PROPERTIES" > key.properties
 
       - name: Build and Deploy to Play Store
         working-directory: android

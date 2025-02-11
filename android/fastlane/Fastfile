@@ -71,8 +71,8 @@ platform :android do
     #internal (for internal testing),alpha (for closed testing),beta (for open testing),production (for public release)
     upload_to_play_store(
       track: "beta", 
+      json_key: "android/fastlane/supply.json"
       aab: "../build/app/outputs/bundle/productionRelease/app-production-release.aab",
-      json_key: "supply.json"
     )
   end
 end
