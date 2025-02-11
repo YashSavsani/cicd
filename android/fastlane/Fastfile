@@ -65,16 +65,14 @@ platform :android do
     build_number = options[:build_number] || 1
     # release_notes = options[:release_notes] || "Lots of amazing new features to test out!"
 
-    json_key_data = ENV['SUPPLY_KEY']
-
     sh "flutter clean"
     sh "flutter build appbundle --build-name=#{version} --build-number=#{build_number} --flavor production --target lib/main_production.dart"
     
     #internal (for internal testing),alpha (for closed testing),beta (for open testing),production (for public release)
     upload_to_play_store(
-      track: "beta",
-      json_key_data: json_key_data,
+      track: "beta", 
       aab: "../build/app/outputs/bundle/productionRelease/app-production-release.aab",
+      json_key: "fastlane/supply.json",
     )
   end
 end
