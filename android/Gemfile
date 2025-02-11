@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "fastlane"
+gem "fastlane", "~> 2.226.0"  # Replace 2.XXXX with the desired version e.g., "~> 2.220.0"
 
 plugins_path = File.join(File.dirname(__FILE__), 'fastlane', 'Pluginfile')
 eval_gemfile(plugins_path) if File.exist?(plugins_path)
