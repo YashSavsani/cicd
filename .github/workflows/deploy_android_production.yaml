@@ -50,12 +50,13 @@ jobs:
           bundler-cache: true
           working-directory: android
 
-      - name: Decode Android Keystore 
+      - name: Decode Android Keystore
         working-directory: android
         run: |
           echo "$RELEASE_SIGNING_KEY" > release.jks.b64
           base64 -d -i release.jks.b64 > app/release.keystore
-      
+          cat app/release.keystore | keytool -list -v -keystore app/release.keystore -alias ${{ secrets.RELEASE_KEY_ALIAS }} $ -storepass ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
+
       - name: Set up Supply Key file
         working-directory: android
         run: echo "$SUPPLY_KEY" > fastlane/supply.json
