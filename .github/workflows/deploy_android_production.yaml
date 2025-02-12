@@ -54,7 +54,7 @@ jobs:
         working-directory: android
         run: |
           echo "$RELEASE_SIGNING_KEY" > release.jks.b64
-          base64 -d -i release.jks.b64 > app/release.jks
+          base64 -d -i release.jks.b64 > app/release.keystore
       
       - name: Set up Supply Key file
         working-directory: android
